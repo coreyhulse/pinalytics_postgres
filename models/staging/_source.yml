@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: pinalytics_raw
+    schema: hulseweb_pinalytics_raw
+    database: hulseweb_pinalytics_raw
+    tables:
+      - name: ifpa_players
+      - name: ifpa_tournaments
+      - name: ifpa_tournament_results
