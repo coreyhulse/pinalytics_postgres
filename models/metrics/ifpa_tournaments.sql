@@ -7,11 +7,14 @@ SELECT
 , stg_ifpa_tournaments.address1
 , stg_ifpa_tournaments.address2
 , stg_ifpa_tournaments.city
+, stg_ifpa_tournaments.city_known
 , stg_ifpa_tournaments.stateprov
 , stg_ifpa_tournaments.stateprov_known
-, stg_ifpa_tournaments.postal_code
+, stg_ifpa_tournaments.city_state
+, stg_ifpa_tournaments.postal_code AS postal_code_source
+, COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.min_zip_code) AS postal_code
 , stg_ifpa_tournaments.postal_code_known
-, stg_tournaments_with_dma.dma_description
+, COALESCE(stg_tournaments_with_dma.dma_description, zip_to_dma.dma_description) AS dma_description
 , stg_ifpa_tournaments.latitude
 , stg_ifpa_tournaments.longitude
 , stg_ifpa_tournaments.country_name
@@ -44,6 +47,11 @@ SELECT
 FROM {{ ref('stg_ifpa_tournaments') }} AS stg_ifpa_tournaments
 LEFT JOIN {{ ref('stg_tournaments_with_dma') }} AS stg_tournaments_with_dma
 ON stg_ifpa_tournaments.tournament_id = stg_tournaments_with_dma.tournament_id
+LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
+ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
+LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
+ON stg_city_min_zip.min_zip_code = zip_to_dma.zip_code
+
 
 {{
   config({

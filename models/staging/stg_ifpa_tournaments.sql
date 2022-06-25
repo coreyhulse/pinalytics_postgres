@@ -6,9 +6,11 @@ SELECT
 , private_flag
 , address1
 , address2
-, city
+, CASE WHEN city > '' THEN city ELSE NULL END AS city
+, CASE WHEN city > '' THEN 1 ELSE 0 END AS city_known
 , CASE WHEN stateprov > '' THEN stateprov ELSE NULL END AS stateprov
 , CASE WHEN stateprov > '' THEN 1 ELSE 0 END AS stateprov_known
+, CONCAT(UPPER(city), ' ', UPPER(stateprov)) AS city_state
 , CASE WHEN postal_code > '' THEN postal_code ELSE NULL END AS postal_code
 , CASE WHEN postal_code > '' THEN 1 ELSE 0 END AS postal_code_known
 , latitude
@@ -45,6 +47,7 @@ WHERE tournament_id <> 0
 
 {{
   config({
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add PRIMARY KEY(tournament_id)'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add PRIMARY KEY(tournament_id)',
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_city_state (city_state)'
     })
 }}
