@@ -1,0 +1,12 @@
+
+version: 2
+
+models:
+  - name: ifpa_tournaments
+    description: "IFPA pinball tournaments with relevant history"
+    columns:
+      - name: tournament_id
+        description: "Primary Key.  Connects to URL link for tournaments."
+        tests:
+          - unique
+          - not_null
