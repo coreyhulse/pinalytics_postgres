@@ -15,6 +15,12 @@ SELECT
 , COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.min_zip_code) AS postal_code
 , stg_ifpa_tournaments.postal_code_known
 , COALESCE(stg_tournaments_with_dma.dma_description, zip_to_dma.dma_description) AS dma_description
+, CASE
+    WHEN country_code = 'US' THEN CONCAT('US - ', COALESCE(COALESCE(stg_tournaments_with_dma.dma_description, zip_to_dma.dma_description), stg_ifpa_tournaments.stateprov, 'UNKNOWN'))
+    WHEN stateprov_known = 1 THEN UPPER(CONCAT(country_code, ' - ', stateprov))
+    WHEN country_name > '' THEN UPPER(country_code)
+    ELSE 'UNKNOWN'
+  END AS location
 , stg_ifpa_tournaments.latitude
 , stg_ifpa_tournaments.longitude
 , stg_ifpa_tournaments.country_name
