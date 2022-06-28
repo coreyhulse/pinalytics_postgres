@@ -32,10 +32,9 @@ SELECT
 , efficiency_value
 , years_active
 , error_message
-, CASE WHEN error_message > '' THEN 0 ELSE 1 END AS is_valid
 , extract_timestamp
-FROM {{ source('pinalytics_raw', 'ifpa_players') }}
-WHERE player_id <> 0
+FROM {{ ref('stg_ifpa_players') }}
+WHERE is_valid = 1
 
 {{
   config({

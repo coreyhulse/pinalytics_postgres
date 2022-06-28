@@ -57,6 +57,7 @@ LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
 ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
 LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
 ON stg_city_min_zip.min_zip_code = zip_to_dma.zip_code
+WHERE is_valid = 1
 
 
 {{

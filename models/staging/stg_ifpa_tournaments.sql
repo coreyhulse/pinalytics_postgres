@@ -41,6 +41,7 @@ SELECT
 , qualifying_format
 , finals_format
 , error_message
+, CASE WHEN error_message > '' THEN 0 ELSE 1 END AS is_valid
 , extract_timestamp
 FROM {{ source('pinalytics_raw', 'ifpa_tournaments') }}
 WHERE tournament_id <> 0
