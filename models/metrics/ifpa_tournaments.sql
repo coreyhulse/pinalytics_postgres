@@ -20,7 +20,7 @@ SELECT
     WHEN stateprov_known = 1 THEN UPPER(CONCAT(country_code, ' - ', stateprov))
     WHEN country_name > '' THEN UPPER(country_code)
     ELSE 'UNKNOWN'
-  END AS location
+  END AS geography
 , stg_ifpa_tournaments.latitude
 , stg_ifpa_tournaments.longitude
 , stg_ifpa_tournaments.country_name

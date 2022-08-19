@@ -15,7 +15,7 @@ SELECT
 , ifpa_tournaments.postal_code
 , ifpa_tournaments.postal_code_known
 , ifpa_tournaments.dma_description
-, ifpa_tournaments.location
+, ifpa_tournaments.geography
 , ifpa_tournaments.country_name
 , ifpa_tournaments.country_code
 , ifpa_tournaments.country_us
@@ -37,11 +37,12 @@ SELECT
 FROM {{ ref('stg_ifpa_tournament_results') }} stg_ifpa_tournament_results
 LEFT JOIN {{ ref('ifpa_tournaments') }} ifpa_tournaments
 ON stg_ifpa_tournament_results.tournament_id = ifpa_tournaments.tournament_id
+-- LEFT JOIN stg_calendar
 
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_tournament (tournament_id)',
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_player (player_id)',
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_location (location(255))'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_geography (geography(255))'
     })
 }}
