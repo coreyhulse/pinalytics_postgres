@@ -16,7 +16,8 @@ FROM {{ ref('zip_codes') }}
 
 {{
   config({
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add PRIMARY KEY(zip_code)',
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_city_state (city_state(255))'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
+                      add PRIMARY KEY(zip_code)
+                    , add INDEX index_city_state (city_state(255))'
     })
 }}

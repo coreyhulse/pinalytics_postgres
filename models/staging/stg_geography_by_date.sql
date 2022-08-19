@@ -9,7 +9,8 @@ GROUP BY 1,2
 
 {{
   config({
-        "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_geography (geography(255))',
-        "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_date (date)'
+        "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
+                          add INDEX index_geography (geography(255))
+                        , add INDEX index_date (date)'
     })
 }}

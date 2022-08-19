@@ -32,7 +32,14 @@ SELECT
 , stg_ifpa_tournaments.website
 , stg_ifpa_tournaments.event_name
 , stg_ifpa_tournaments.event_start_date
+, stg_calendar.year
+, stg_calendar.yearmonth
+, stg_calendar.rolling_01_month
+, stg_calendar.rolling_12_month
+, stg_calendar.rolling_48_month
+, stg_calendar.rolling_all_time
 , stg_ifpa_tournaments.event_end_date
+, stg_ifpa_tournaments.date
 , stg_ifpa_tournaments.ratings_strength
 , stg_ifpa_tournaments.rankings_strength
 , stg_ifpa_tournaments.base_value
@@ -57,11 +64,15 @@ LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
 ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
 LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
 ON stg_city_min_zip.min_zip_code = zip_to_dma.zip_code
+LEFT JOIN {{ ref('stg_calendar') }} stg_calendar
+ON stg_ifpa_tournaments.date = stg_calendar.date
 WHERE is_valid = 1
 
 
 {{
   config({
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add PRIMARY KEY(tournament_id)'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
+                      add PRIMARY KEY(tournament_id)
+                    , add INDEX index_date (date)',
     })
 }}

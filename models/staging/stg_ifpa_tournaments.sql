@@ -24,6 +24,7 @@ SELECT
 , website
 , event_name
 , event_start_date
+, event_start_date AS date
 , event_end_date
 , ratings_strength
 , rankings_strength
@@ -48,7 +49,9 @@ WHERE tournament_id <> 0
 
 {{
   config({
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add PRIMARY KEY(tournament_id)',
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_city_state (city_state)'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
+                      add PRIMARY KEY(tournament_id)
+                    , add INDEX index_city_state (city_state)
+                    , add INDEX index_date (date)'
     })
 }}

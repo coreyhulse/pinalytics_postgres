@@ -22,6 +22,13 @@ SELECT
 , ifpa_tournaments.country_known
 , ifpa_tournaments.event_name
 , ifpa_tournaments.event_start_date
+, ifpa_tournaments.date
+, ifpa_tournaments.year
+, ifpa_tournaments.yearmonth
+, ifpa_tournaments.rolling_01_month
+, ifpa_tournaments.rolling_12_month
+, ifpa_tournaments.rolling_48_month
+, ifpa_tournaments.rolling_all_time
 , ifpa_tournaments.ratings_strength
 , ifpa_tournaments.rankings_strength
 , ifpa_tournaments.base_value
@@ -37,12 +44,13 @@ SELECT
 FROM {{ ref('stg_ifpa_tournament_results') }} stg_ifpa_tournament_results
 LEFT JOIN {{ ref('ifpa_tournaments') }} ifpa_tournaments
 ON stg_ifpa_tournament_results.tournament_id = ifpa_tournaments.tournament_id
--- LEFT JOIN stg_calendar
 
 {{
   config({
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_tournament (tournament_id)',
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_player (player_id)',
-    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }} add INDEX index_geography (geography(255))'
+    "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
+                      add INDEX index_tournament (tournament_id)
+                    , add INDEX index_date (date)
+                    , add INDEX index_player (player_id)
+                    , add INDEX index_geography (geography(255))'
     })
 }}
