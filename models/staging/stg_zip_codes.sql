@@ -7,7 +7,7 @@ SELECT
   , county
   , CONCAT(UPPER(primary_city), ' ', UPPER(state)) AS city_state
   , timezone
-  , area_codes
+--  , area_codes
   , world_region
   , country
   , latitude

@@ -26,16 +26,24 @@ SELECT
 , ifpa_tournaments.year
 , ifpa_tournaments.yearmonth
 , ifpa_tournaments.rolling_01_month
+, ifpa_tournaments.rolling_03_month
 , ifpa_tournaments.rolling_12_month
+, ifpa_tournaments.rolling_24_month
+, ifpa_tournaments.rolling_36_month
 , ifpa_tournaments.rolling_48_month
+, ifpa_tournaments.rolling_60_month
 , ifpa_tournaments.rolling_all_time
 , ifpa_tournaments.ratings_strength
 , ifpa_tournaments.rankings_strength
 , ifpa_tournaments.base_value
 , ifpa_tournaments.tournament_percentage_grade
 , ifpa_tournaments.tournament_value
+, ifpa_tournaments.qualifying_format
+, ifpa_tournaments.finals_format
 , stg_ifpa_tournament_results.position
+, stg_ifpa_tournament_results.position / stg_ifpa_tournament_results.player_count AS position_percentage
 , stg_ifpa_tournament_results.points
+, stg_ifpa_tournament_results.points / ifpa_tournaments.tournament_value AS points_percentage
 , stg_ifpa_tournament_results.wppr_rank AS tournament_start_wppr_rank
 , stg_ifpa_tournament_results.ratings_value AS tournament_start_ratings_value
 , stg_ifpa_tournament_results.excluded_flag

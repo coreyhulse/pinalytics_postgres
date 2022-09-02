@@ -35,8 +35,12 @@ SELECT
 , stg_calendar.year
 , stg_calendar.yearmonth
 , stg_calendar.rolling_01_month
+, stg_calendar.rolling_03_month
 , stg_calendar.rolling_12_month
+, stg_calendar.rolling_24_month
+, stg_calendar.rolling_36_month
 , stg_calendar.rolling_48_month
+, stg_calendar.rolling_60_month
 , stg_calendar.rolling_all_time
 , stg_ifpa_tournaments.event_end_date
 , stg_ifpa_tournaments.date
