@@ -114,6 +114,7 @@ SELECT
     WHEN current_wppr_rank = 0 THEN NULL
     WHEN current_wppr_rank <= 100 THEN 100
     WHEN current_wppr_rank <= 1000 THEN 1000
+    WHEN current_wppr_rank <= 2500 THEN 2500
     WHEN current_wppr_rank <= 5000 THEN 5000
     WHEN current_wppr_rank <= 10000 THEN 10000
     WHEN current_wppr_rank <= 50000 THEN 50000
