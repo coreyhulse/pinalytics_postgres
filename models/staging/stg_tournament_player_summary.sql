@@ -1,12 +1,12 @@
 SELECT
-  ifpa_tournament_results.tournament_id
-, ifpa_tournament_results.player_id
-, ifpa_tournament_results.geography
-, ifpa_tournament_results.rolling_48_month
+  fct_ifpa_tournament_results.tournament_id
+, fct_ifpa_tournament_results.player_id
+, fct_ifpa_tournament_results.geography
+, fct_ifpa_tournament_results.rolling_48_month
 , stg_player_stats.player_persona
-FROM {{ ref('ifpa_tournament_results') }} ifpa_tournament_results
+FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
 LEFT JOIN {{ ref('stg_player_stats') }} stg_player_stats
-ON ifpa_tournament_results.player_id = stg_player_stats.player_id
+ON fct_ifpa_tournament_results.player_id = stg_player_stats.player_id
 
 {{
   config({

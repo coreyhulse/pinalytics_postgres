@@ -6,40 +6,40 @@ SELECT
 , stg_ifpa_tournament_results.first_name
 , stg_ifpa_tournament_results.last_name
 , stg_ifpa_tournament_results.profile_photo
-, ifpa_tournaments.city
-, ifpa_tournaments.city_known
-, ifpa_tournaments.stateprov
-, ifpa_tournaments.stateprov_known
-, ifpa_tournaments.city_state
-, ifpa_tournaments.postal_code_source
-, ifpa_tournaments.postal_code
-, ifpa_tournaments.postal_code_known
-, ifpa_tournaments.dma_description
-, ifpa_tournaments.geography
-, ifpa_tournaments.country_name
-, ifpa_tournaments.country_code
-, ifpa_tournaments.country_us
-, ifpa_tournaments.country_known
-, ifpa_tournaments.event_name
-, ifpa_tournaments.event_start_date
-, ifpa_tournaments.date
-, ifpa_tournaments.year
-, ifpa_tournaments.yearmonth
-, ifpa_tournaments.rolling_01_month
-, ifpa_tournaments.rolling_03_month
-, ifpa_tournaments.rolling_12_month
-, ifpa_tournaments.rolling_24_month
-, ifpa_tournaments.rolling_36_month
-, ifpa_tournaments.rolling_48_month
-, ifpa_tournaments.rolling_60_month
-, ifpa_tournaments.rolling_all_time
-, ifpa_tournaments.ratings_strength
-, ifpa_tournaments.rankings_strength
-, ifpa_tournaments.base_value
-, ifpa_tournaments.tournament_percentage_grade
-, ifpa_tournaments.tournament_value
-, ifpa_tournaments.qualifying_format
-, ifpa_tournaments.finals_format
+, fct_ifpa_tournaments.city
+, fct_ifpa_tournaments.city_known
+, fct_ifpa_tournaments.stateprov
+, fct_ifpa_tournaments.stateprov_known
+, fct_ifpa_tournaments.city_state
+, fct_ifpa_tournaments.postal_code_source
+, fct_ifpa_tournaments.postal_code
+, fct_ifpa_tournaments.postal_code_known
+, fct_ifpa_tournaments.dma_description
+, fct_ifpa_tournaments.geography
+, fct_ifpa_tournaments.country_name
+, fct_ifpa_tournaments.country_code
+, fct_ifpa_tournaments.country_us
+, fct_ifpa_tournaments.country_known
+, fct_ifpa_tournaments.event_name
+, fct_ifpa_tournaments.event_start_date
+, fct_ifpa_tournaments.date
+, fct_ifpa_tournaments.year
+, fct_ifpa_tournaments.yearmonth
+, fct_ifpa_tournaments.rolling_01_month
+, fct_ifpa_tournaments.rolling_03_month
+, fct_ifpa_tournaments.rolling_12_month
+, fct_ifpa_tournaments.rolling_24_month
+, fct_ifpa_tournaments.rolling_36_month
+, fct_ifpa_tournaments.rolling_48_month
+, fct_ifpa_tournaments.rolling_60_month
+, fct_ifpa_tournaments.rolling_all_time
+, fct_ifpa_tournaments.ratings_strength
+, fct_ifpa_tournaments.rankings_strength
+, fct_ifpa_tournaments.base_value
+, fct_ifpa_tournaments.tournament_percentage_grade
+, fct_ifpa_tournaments.tournament_value
+, fct_ifpa_tournaments.qualifying_format
+, fct_ifpa_tournaments.finals_format
 , stg_ifpa_tournament_results.position
 , stg_ifpa_tournament_results.position / stg_ifpa_tournament_results.player_count AS position_percentage
 , stg_ifpa_tournament_results.points
@@ -50,7 +50,7 @@ SELECT
 , stg_ifpa_tournament_results.error_message
 , stg_ifpa_tournament_results.extract_timestamp
 FROM {{ ref('stg_ifpa_tournament_results') }} stg_ifpa_tournament_results
-LEFT JOIN {{ ref('ifpa_tournaments') }} ifpa_tournaments
+LEFT JOIN {{ ref('fct_ifpa_tournaments') }} fct_ifpa_tournaments
 ON stg_ifpa_tournament_results.tournament_id = ifpa_tournaments.tournament_id
 
 {{

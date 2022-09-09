@@ -12,7 +12,7 @@ SELECT
 , stg_ifpa_tournaments.stateprov_known
 , stg_ifpa_tournaments.city_state
 , stg_ifpa_tournaments.postal_code AS postal_code_source
-, COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.min_zip_code) AS postal_code
+, COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.zip_code) AS postal_code
 , stg_ifpa_tournaments.postal_code_known
 , COALESCE(stg_tournaments_with_dma.dma_description, zip_to_dma.dma_description) AS dma_description
 , CASE
@@ -67,7 +67,7 @@ ON stg_ifpa_tournaments.tournament_id = stg_tournaments_with_dma.tournament_id
 LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
 ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
 LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
-ON stg_city_min_zip.min_zip_code = zip_to_dma.zip_code
+ON stg_city_min_zip.zip_code = zip_to_dma.zip_code
 LEFT JOIN {{ ref('stg_calendar') }} stg_calendar
 ON stg_ifpa_tournaments.date = stg_calendar.date
 WHERE is_valid = 1

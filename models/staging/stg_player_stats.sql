@@ -1,38 +1,38 @@
 SELECT
-  ifpa_players.player_id
-, ifpa_players.first_name
-, ifpa_players.last_name
-, ifpa_players.initials
-, ifpa_players.gender
-, ifpa_players.age
-, ifpa_players.excluded_flag
-, ifpa_players.city
-, ifpa_players.stateprov
-, ifpa_players.country_name
-, ifpa_players.country_code
-, ifpa_players.ifpa_registered
-, ifpa_players.profile_photo
-, ifpa_players.current_wppr_rank
-, ifpa_players.last_month_rank
-, ifpa_players.last_year_rank
-, ifpa_players.highest_rank
-, ifpa_players.highest_rank_date
-, ifpa_players.current_wppr_points
-, ifpa_players.all_time_wppr_points
-, ifpa_players.best_finish
-, ifpa_players.best_finish_count
-, ifpa_players.average_finish
-, ifpa_players.average_finish_last_year
-, ifpa_players.total_events_all_time
-, ifpa_players.total_active_events
-, ifpa_players.total_events_away
-, ifpa_players.ratings_rank
-, ifpa_players.ratings_value
-, ifpa_players.efficiency_rank
-, ifpa_players.efficiency_value
-, ifpa_players.years_active
-, ifpa_players.error_message
-, ifpa_players.extract_timestamp
+  fct_ifpa_players.player_id
+, fct_ifpa_players.first_name
+, fct_ifpa_players.last_name
+, fct_ifpa_players.initials
+, fct_ifpa_players.gender
+, fct_ifpa_players.age
+, fct_ifpa_players.excluded_flag
+, fct_ifpa_players.city
+, fct_ifpa_players.stateprov
+, fct_ifpa_players.country_name
+, fct_ifpa_players.country_code
+, fct_ifpa_players.ifpa_registered
+, fct_ifpa_players.profile_photo
+, fct_ifpa_players.current_wppr_rank
+, fct_ifpa_players.last_month_rank
+, fct_ifpa_players.last_year_rank
+, fct_ifpa_players.highest_rank
+, fct_ifpa_players.highest_rank_date
+, fct_ifpa_players.current_wppr_points
+, fct_ifpa_players.all_time_wppr_points
+, fct_ifpa_players.best_finish
+, fct_ifpa_players.best_finish_count
+, fct_ifpa_players.average_finish
+, fct_ifpa_players.average_finish_last_year
+, fct_ifpa_players.total_events_all_time
+, fct_ifpa_players.total_active_events
+, fct_ifpa_players.total_events_away
+, fct_ifpa_players.ratings_rank
+, fct_ifpa_players.ratings_value
+, fct_ifpa_players.efficiency_rank
+, fct_ifpa_players.efficiency_value
+, fct_ifpa_players.years_active
+, fct_ifpa_players.error_message
+, fct_ifpa_players.extract_timestamp
 , player_geography_highlights.tournament_count_rolling_12
 , player_geography_highlights.points_rolling_12
 , player_geography_highlights.distinct_geography_count_rolling_12
@@ -130,9 +130,9 @@ SELECT
     ELSE 'Unknown'
   END AS player_persona
 
-FROM {{ ref('ifpa_players') }} ifpa_players
+FROM {{ ref('fct_ifpa_players') }} fct_ifpa_players
 LEFT JOIN {{ ref('player_geography_highlights') }} player_geography_highlights
-ON ifpa_players.player_id = player_geography_highlights.player_id
+ON fct_ifpa_players.player_id = player_geography_highlights.player_id
 
 {{
   config({

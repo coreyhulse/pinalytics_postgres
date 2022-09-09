@@ -51,7 +51,7 @@ WHERE tournament_id <> 0
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                       add PRIMARY KEY(tournament_id)
-                    , add INDEX index_city_state (city_state)
+                    , add INDEX index_city_state (city_state(255))
                     , add INDEX index_date (date)'
     })
 }}

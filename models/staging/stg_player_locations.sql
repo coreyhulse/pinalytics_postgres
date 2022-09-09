@@ -1,12 +1,12 @@
 SELECT
-  ifpa_tournament_results.ranking_system
-, ifpa_tournament_results.player_id
-, ifpa_tournament_results.city
-, ifpa_tournament_results.stateprov
-, ifpa_tournament_results.city_state
-, ifpa_tournament_results.postal_code
-, ifpa_tournament_results.geography
-, ifpa_tournament_results.country_name
+  fct_ifpa_tournament_results.ranking_system
+, fct_ifpa_tournament_results.player_id
+, fct_ifpa_tournament_results.city
+, fct_ifpa_tournament_results.stateprov
+, fct_ifpa_tournament_results.city_state
+, fct_ifpa_tournament_results.postal_code
+, fct_ifpa_tournament_results.geography
+, fct_ifpa_tournament_results.country_name
 , COUNT(DISTINCT CASE WHEN rolling_12_month = 1 THEN tournament_id ELSE NULL END) AS tournament_count_rolling_12
 , SUM(CASE WHEN rolling_12_month = 1 THEN points ELSE NULL END) AS points_rolling_12
 , SUM(CASE WHEN rolling_12_month = 1 THEN position_percentage ELSE NULL END) / COUNT(DISTINCT CASE WHEN rolling_12_month = 1 THEN tournament_id ELSE NULL END) AS position_perc_rolling_12
@@ -19,7 +19,7 @@ SELECT
 , SUM(points) AS points_rolling_all_time
 , SUM(position_percentage) / COUNT(DISTINCT tournament_id) AS position_perc_rolling_all_time
 , SUM(points_percentage) / COUNT(DISTINCT tournament_id) AS points_perc_rolling_all_time
-FROM {{ ref('ifpa_tournament_results') }} ifpa_tournament_results
+FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
 GROUP BY 1,2,3,4,5,6,7,8
 WHERE player_id <> 0
 
