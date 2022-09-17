@@ -43,7 +43,7 @@ SELECT
 , stg_ifpa_tournament_results.position
 , stg_ifpa_tournament_results.position / stg_ifpa_tournament_results.player_count AS position_percentage
 , stg_ifpa_tournament_results.points
-, stg_ifpa_tournament_results.points / ifpa_tournaments.tournament_value AS points_percentage
+, stg_ifpa_tournament_results.points / fct_ifpa_tournaments.tournament_value AS points_percentage
 , stg_ifpa_tournament_results.wppr_rank AS tournament_start_wppr_rank
 , stg_ifpa_tournament_results.ratings_value AS tournament_start_ratings_value
 , stg_ifpa_tournament_results.excluded_flag
@@ -51,7 +51,7 @@ SELECT
 , stg_ifpa_tournament_results.extract_timestamp
 FROM {{ ref('stg_ifpa_tournament_results') }} stg_ifpa_tournament_results
 LEFT JOIN {{ ref('fct_ifpa_tournaments') }} fct_ifpa_tournaments
-ON stg_ifpa_tournament_results.tournament_id = ifpa_tournaments.tournament_id
+ON stg_ifpa_tournament_results.tournament_id = fct_ifpa_tournaments.tournament_id
 
 {{
   config({

@@ -8,6 +8,7 @@ SELECT
 , COUNT(DISTINCT stg_tournament_player_summary.player_id) AS count_players
 FROM {{ ref('stg_tournament_player_summary') }} stg_tournament_player_summary
 WHERE rolling_48_month = 1
+GROUP BY 1
 
 {{
   config({

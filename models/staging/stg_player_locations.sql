@@ -20,8 +20,8 @@ SELECT
 , SUM(position_percentage) / COUNT(DISTINCT tournament_id) AS position_perc_rolling_all_time
 , SUM(points_percentage) / COUNT(DISTINCT tournament_id) AS points_perc_rolling_all_time
 FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
-GROUP BY 1,2,3,4,5,6,7,8
 WHERE player_id <> 0
+GROUP BY 1,2,3,4,5,6,7,8
 
 {{
   config({

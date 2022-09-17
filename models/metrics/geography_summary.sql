@@ -66,11 +66,26 @@ SELECT
 , stg_geography_stats_tournaments_all.all_perc_tournament_onetimer
 , stg_geography_stats_tournaments_all.all_perc_tournament_nonactive
 
+, geography_rank.points_01_month_rank
+, geography_rank.points_12_month_rank
+, geography_rank.points_48_month_rank
+, geography_rank.points_alltime_rank
+, geography_rank.points_winner_01_month_rank
+, geography_rank.points_winner_12_month_rank
+, geography_rank.points_winner_48_month_rank
+, geography_rank.points_winner_alltime_rank
+, geography_rank.tournaments_01_month_rank
+, geography_rank.tournaments_12_month_rank
+, geography_rank.tournaments_48_month_rank
+, geography_rank.tournaments_alltime_rank
+
 FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
 LEFT JOIN {{ ref('stg_geography_stats_players') }} stg_geography_stats_players
 ON stg_geography_stats_points.geography = stg_geography_stats_players.geography
 LEFT JOIN {{ ref('stg_geography_stats_tournaments') }} stg_geography_stats_tournaments
 ON stg_geography_stats_points.geography = stg_geography_stats_tournaments.geography
+LEFT JOIN {{ ref('geography_rank') }} geography_rank
+ON stg_geography_stats_points.geography = geography_rank.geography
 LEFT JOIN {{ ref('stg_geography_stats_players_all') }} stg_geography_stats_players_all
 ON 1=1
 LEFT JOIN {{ ref('stg_geography_stats_tournaments_all') }} stg_geography_stats_tournaments_all
