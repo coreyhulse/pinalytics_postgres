@@ -3,6 +3,7 @@ SELECT
 , SUM(stg_geography_stats_tournaments.count_tournament_traveler) / SUM(stg_geography_stats_tournaments.count_tournaments) AS all_perc_tournament_traveler
 , SUM(stg_geography_stats_tournaments.count_tournament_localsupporter) / SUM(stg_geography_stats_tournaments.count_tournaments) AS all_perc_tournament_localsupporter
 , SUM(stg_geography_stats_tournaments.count_tournament_onetimer) / SUM(stg_geography_stats_tournaments.count_tournaments) AS all_perc_tournament_onetimer
+, SUM(stg_geography_stats_tournaments.count_tournament_mixedpersona) / SUM(stg_geography_stats_tournaments.count_tournaments) AS all_perc_tournament_mixedpersona
 , SUM(stg_geography_stats_tournaments.count_tournament_nonactive) / SUM(stg_geography_stats_tournaments.count_tournaments) AS all_perc_tournament_nonactive
 
 FROM {{ ref('stg_geography_stats_tournaments') }} stg_geography_stats_tournaments

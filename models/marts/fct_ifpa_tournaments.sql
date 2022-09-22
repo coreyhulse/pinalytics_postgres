@@ -56,6 +56,7 @@ SELECT
 , stg_ifpa_tournaments.unlimited_qualifying_flag
 , stg_ifpa_tournaments.eligible_player_count
 , stg_ifpa_tournaments.player_count
+, CEILING(stg_ifpa_tournaments.player_count/10)*10 AS player_count_bin
 , stg_ifpa_tournaments.ranking_system
 , stg_ifpa_tournaments.qualifying_format
 , stg_ifpa_tournaments.finals_format
