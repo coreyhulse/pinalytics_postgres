@@ -82,6 +82,10 @@ SELECT
 FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
 LEFT JOIN {{ ref('stg_geography_stats_players') }} stg_geography_stats_players
 ON stg_geography_stats_points.geography = stg_geography_stats_players.geography
+
+LEFT JOIN {{ ref('player_geography_highlights') }} player_geography_highlights
+ON stg_geography_stats_points.geography = fct_ifpa_players.rolling_all_time_geography_01
+
 LEFT JOIN {{ ref('stg_geography_stats_tournaments') }} stg_geography_stats_tournaments
 ON stg_geography_stats_points.geography = stg_geography_stats_tournaments.geography
 LEFT JOIN {{ ref('geography_rank') }} geography_rank
