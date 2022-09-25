@@ -24,4 +24,5 @@ SELECT
 , SUM(player_bin_100) / SUM(tournament_count) AS all_player_bin_100_perc
 , SUM(player_bin_100_plus) / SUM(tournament_count) AS all_player_bin_100_plus_perc
 
+
 FROM {{ ref('stg_geography_player_bins') }} stg_geography_player_bins
