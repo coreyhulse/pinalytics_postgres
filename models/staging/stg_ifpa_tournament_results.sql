@@ -17,6 +17,7 @@ SELECT
 , extract_timestamp
 FROM {{ source('pinalytics_raw', 'ifpa_tournament_results') }}
 
+
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}

@@ -3,6 +3,7 @@ SELECT
 , stg_ifpa_tournament_results.ranking_system
 , stg_ifpa_tournament_results.player_count AS tournament_player_count
 , stg_ifpa_tournament_results.player_id
+, CONCAT(stg_ifpa_tournament_results.tournament_id, '-', stg_ifpa_tournament_results.player_id, (@row_number := @row_number + 1)) AS tournament_player_row_id
 , stg_ifpa_tournament_results.first_name
 , stg_ifpa_tournament_results.last_name
 , stg_ifpa_tournament_results.profile_photo
@@ -55,6 +56,7 @@ ON stg_ifpa_tournament_results.tournament_id = fct_ifpa_tournaments.tournament_i
 
 {{
   config({
+    "pre-hook": 'SET @row_number = 0, @row_number = 0',
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                       add INDEX index_tournament (tournament_id)
                     , add INDEX index_date (date)
