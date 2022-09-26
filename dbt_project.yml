@@ -30,6 +30,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 seeds:
   +quote_columns: false
+  pinalytics:
+    zip_codes:
+      +column_types:
+        zip: varchar(5)
 
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files

@@ -1,6 +1,6 @@
 SELECT
   tournament_id
-, postal_code
+, LEFT(postal_code,5) AS postal_code
 FROM {{ ref('stg_ifpa_tournaments') }}
 WHERE country_us = 1
 AND postal_code_known = 1

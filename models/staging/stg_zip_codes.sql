@@ -5,9 +5,9 @@ SELECT
   , primary_city AS city
   , state
   , county
-  , CONCAT(UPPER(primary_city), ' ', UPPER(state)) AS city_state
+  , CAST(CONCAT(UPPER(primary_city), ' ', UPPER(state)) AS CHAR(255)) AS city_state
   , timezone
-  , area_codes
+--  , area_codes
   , world_region
   , country
   , latitude

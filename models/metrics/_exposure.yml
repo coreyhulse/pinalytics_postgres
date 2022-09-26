@@ -1,0 +1,45 @@
+version: 2
+
+exposures:
+
+  - name: webpage_international_summary
+    type: application
+    maturity: low
+    url: https://www.pinballspinner.com/pinalytics/internationalsummary.php
+    description: International Summary Page
+
+    depends_on:
+      - ref('international_summary')
+
+    owner:
+      name: Corey Hulse
+      email: pinballspinner@gmail.com
+
+  - name: webpage_geography_summary
+    type: application
+    maturity: low
+    url: https://www.pinballspinner.com/pinalytics/geography.php
+    description: Geography Analysis Page
+
+    depends_on:
+      - ref('geography_summary')
+      - ref('shared_geographies')
+      - ref('stg_tournament_stats')
+      - ref('top_players_by_geography')
+
+    owner:
+      name: Corey Hulse
+      email: pinballspinner@gmail.com
+
+  - name: webpage_geoselection
+    type: application
+    maturity: low
+    url: https://www.pinballspinner.com/pinalytics/geoselection
+    description: Geography Distinct Dropdown
+
+    depends_on:
+      - ref('geography_summary')
+
+    owner:
+      name: Corey Hulse
+      email: pinballspinner@gmail.com

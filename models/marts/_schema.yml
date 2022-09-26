@@ -1,0 +1,28 @@
+
+version: 2
+
+models:
+  - name: fct_ifpa_tournaments
+    description: "IFPA pinball tournaments with relevant history"
+    columns:
+      - name: tournament_id
+        description: "Primary Key.  Connects to URL link for tournaments."
+        tests:
+          - unique
+          - not_null
+  - name: fct_ifpa_players
+    description: "IFPA pinball players with relevant history"
+    columns:
+      - name: player_id
+        description: "Primary Key.  Connects to URL link for players."
+        tests:
+          - unique
+          - not_null
+  - name: fct_ifpa_tournament_results
+    description: "IFPA pinball tournaments with player results"
+    columns:
+      - name: tournament_player_row_id
+        description: "Primary Key.  Connects to URL link for tournaments and players."
+        tests:
+          - unique
+          - not_null

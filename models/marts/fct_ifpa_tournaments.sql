@@ -12,7 +12,7 @@ SELECT
 , stg_ifpa_tournaments.stateprov_known
 , stg_ifpa_tournaments.city_state
 , stg_ifpa_tournaments.postal_code AS postal_code_source
-, COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.min_zip_code) AS postal_code
+, COALESCE(stg_ifpa_tournaments.postal_code, stg_city_min_zip.zip_code) AS postal_code
 , stg_ifpa_tournaments.postal_code_known
 , COALESCE(stg_tournaments_with_dma.dma_description, zip_to_dma.dma_description) AS dma_description
 , CASE
@@ -35,8 +35,12 @@ SELECT
 , stg_calendar.year
 , stg_calendar.yearmonth
 , stg_calendar.rolling_01_month
+, stg_calendar.rolling_03_month
 , stg_calendar.rolling_12_month
+, stg_calendar.rolling_24_month
+, stg_calendar.rolling_36_month
 , stg_calendar.rolling_48_month
+, stg_calendar.rolling_60_month
 , stg_calendar.rolling_all_time
 , stg_ifpa_tournaments.event_end_date
 , stg_ifpa_tournaments.date
@@ -52,6 +56,7 @@ SELECT
 , stg_ifpa_tournaments.unlimited_qualifying_flag
 , stg_ifpa_tournaments.eligible_player_count
 , stg_ifpa_tournaments.player_count
+, CEILING(stg_ifpa_tournaments.player_count/10)*10 AS player_count_bin
 , stg_ifpa_tournaments.ranking_system
 , stg_ifpa_tournaments.qualifying_format
 , stg_ifpa_tournaments.finals_format
@@ -63,7 +68,7 @@ ON stg_ifpa_tournaments.tournament_id = stg_tournaments_with_dma.tournament_id
 LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
 ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
 LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
-ON stg_city_min_zip.min_zip_code = zip_to_dma.zip_code
+ON stg_city_min_zip.zip_code = zip_to_dma.zip_code
 LEFT JOIN {{ ref('stg_calendar') }} stg_calendar
 ON stg_ifpa_tournaments.date = stg_calendar.date
 WHERE is_valid = 1

@@ -15,6 +15,8 @@ SELECT
 FROM {{ ref('stg_geography_by_date') }} stg_geography_by_date
 LEFT JOIN {{ ref('stg_calendar') }} stg_calendar
 ON stg_geography_by_date.date = stg_calendar.date
+WHERE stg_geography_by_date.geography IS NOT NULL
+AND stg_geography_by_date.date IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8,9
 
 {{

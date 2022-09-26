@@ -1,10 +1,10 @@
 SELECT
-  ifpa_tournament_results.geography
-, ifpa_tournament_results.event_start_date AS date
+  fct_ifpa_tournament_results.geography
+, fct_ifpa_tournament_results.event_start_date AS date
 , SUM(points) AS points
 , SUM(CASE WHEN position = 1 THEN points ELSE NULL END) AS points_winner
 , COUNT(DISTINCT tournament_id) AS tournaments
-FROM {{ ref('ifpa_tournament_results') }} ifpa_tournament_results
+FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
 GROUP BY 1,2
 
 {{
