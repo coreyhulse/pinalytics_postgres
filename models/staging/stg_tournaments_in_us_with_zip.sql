@@ -8,7 +8,8 @@ AND postal_code_known = 1
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                      add PRIMARY KEY(tournament_id)
-                    , add INDEX index_postal_code (postal_code)'
+                    --  add PRIMARY KEY(tournament_id)
+                    --, add INDEX index_postal_code (postal_code)
+                    '
     })
 }}

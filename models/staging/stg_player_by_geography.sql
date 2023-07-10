@@ -23,7 +23,7 @@ ORDER BY 2,1
 {{
   config({
         "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                          add INDEX index_geography (geography(255))
-                        , add INDEX index_player_id (player_id)'
+                        --  add INDEX index_geography (geography(255))
+                        --, add INDEX index_player_id (player_id)'
     })
 }}

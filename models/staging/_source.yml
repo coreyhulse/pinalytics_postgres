@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: pinalytics_raw
-    schema: hulseweb_pinalytics_raw
+    schema: public
     tables:
       - name: ifpa_players
       - name: ifpa_tournaments

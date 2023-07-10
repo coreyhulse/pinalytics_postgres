@@ -9,7 +9,8 @@
  {{
    config({
      "pre-hook": 'SET @counter_01 = 0, @curr_player = 0',
-     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                       add INDEX geography (geography(255))'
+     "post-hook": '--ALTER TABLE {{ target.schema }}.{{ this.name }}
+                   --    add INDEX geography (geography(255))
+                   '
      })
  }}
