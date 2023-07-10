@@ -1,5 +1,6 @@
 SELECT
-  tournament_id
+  tournament_player_id
+, tournament_id
 , ranking_system
 , player_count
 , player_id
@@ -21,7 +22,8 @@ FROM {{ source('pinalytics_raw', 'ifpa_tournament_results') }}
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                      add INDEX index_tournament (tournament_id)
-                    , add INDEX index_player (player_id)'
+                      add PRIMARY KEY(tournament_player_id)
+                    --, add INDEX index_tournament (tournament_id)
+                    --, add INDEX index_player (player_id)'
     })
 }}

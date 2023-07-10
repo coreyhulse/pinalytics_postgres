@@ -20,7 +20,7 @@ FROM {{ ref('date_spine') }}
 config({
   "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                     add PRIMARY KEY(date)
-                  , add INDEX index_date (date)
-                  , add INDEX index_yearmonth (yearmonth(7))'
+                --  , add INDEX index_date (date)
+                --  , add INDEX index_yearmonth (yearmonth(7))'
   })
 }}

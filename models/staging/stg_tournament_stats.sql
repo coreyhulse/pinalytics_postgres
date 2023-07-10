@@ -66,7 +66,8 @@ ON fct_ifpa_tournaments.tournament_id = stg_tournament_persona_summary.tournamen
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                       add PRIMARY KEY(tournament_id)
-                    , add INDEX index_date (date)
-                    , add INDEX index_geography (geography(255))',
+                    --, add INDEX index_date (date)
+                    --, add INDEX index_geography (geography(255))
+                    ',
     })
 }}

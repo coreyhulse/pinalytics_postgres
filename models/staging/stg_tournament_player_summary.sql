@@ -11,8 +11,9 @@ ON fct_ifpa_tournament_results.player_id = stg_player_stats.player_id
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                    add INDEX index_player (player_id)
-                  , add INDEX index_tournament (tournament_id)
-                  , add INDEX index_geography (geography(255))'
+                --    add INDEX index_player (player_id)
+                --  , add INDEX index_tournament (tournament_id)
+                --  , add INDEX index_geography (geography(255))
+                '
     })
 }}
