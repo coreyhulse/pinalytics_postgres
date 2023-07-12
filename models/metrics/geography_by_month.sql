@@ -19,10 +19,8 @@ WHERE stg_geography_by_date.geography IS NOT NULL
 AND stg_geography_by_date.date IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8,9
 
-{{
-  config({
+/*
         "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                           add INDEX index_geography (geography(255))
                         , add INDEX index_yearmonth (yearmonth(7))'
-    })
-}}
+*/
