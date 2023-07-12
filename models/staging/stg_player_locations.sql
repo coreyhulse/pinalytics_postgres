@@ -23,11 +23,10 @@ FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
 WHERE player_id <> 0
 GROUP BY 1,2,3,4,5,6,7,8
 
-{{
-  config({
+/*
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                     --  add INDEX index_player (player_id)
                     --, add INDEX index_geography (geography(255))
                     '
     })
-}}
+*/

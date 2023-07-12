@@ -7,10 +7,8 @@ SELECT
 FROM {{ ref('fct_ifpa_tournament_results') }} fct_ifpa_tournament_results
 GROUP BY 1,2
 
-{{
-  config({
+/*
         "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                         --  add INDEX index_geography (geography(255))
                         --, add INDEX index_date (date)'
-    })
-}}
+*/

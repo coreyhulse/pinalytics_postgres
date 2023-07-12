@@ -68,7 +68,7 @@ ON stg_ifpa_tournaments.tournament_id = stg_tournaments_with_dma.tournament_id
 LEFT JOIN {{ ref('stg_city_min_zip') }} AS stg_city_min_zip
 ON stg_ifpa_tournaments.city_state = stg_city_min_zip.city_state
 LEFT JOIN {{ ref('stg_zip_to_dma') }} AS zip_to_dma
-ON stg_city_min_zip.zip_code = zip_to_dma.zip_code
+ON stg_city_min_zip.zip_code = CAST(zip_to_dma.zip_code AS text)
 LEFT JOIN {{ ref('stg_calendar') }} stg_calendar
 ON stg_ifpa_tournaments.date = stg_calendar.date
 WHERE is_valid = 1
@@ -78,6 +78,6 @@ WHERE is_valid = 1
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                       add PRIMARY KEY(tournament_id)
-                    , add INDEX index_date (date)',
+                    --, add INDEX index_date (date)',
     })
 }}
