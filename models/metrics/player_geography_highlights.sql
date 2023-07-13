@@ -31,10 +31,8 @@
   ORDER BY 1
 
 
- {{
-   config({
-     "pre-hook": 'SET @counter_01 = 0, @curr_player = 0',
+ /*
      "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
                        add INDEX index_player_id (player_id)'
-     })
- }}
+
+ */

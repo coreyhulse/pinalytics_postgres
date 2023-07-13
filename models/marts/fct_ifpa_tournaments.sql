@@ -62,6 +62,7 @@ SELECT
 , stg_ifpa_tournaments.finals_format
 , stg_ifpa_tournaments.error_message
 , stg_ifpa_tournaments.extract_timestamp
+, stg_ifpa_tournaments.line_timestamp
 FROM {{ ref('stg_ifpa_tournaments') }} AS stg_ifpa_tournaments
 LEFT JOIN {{ ref('stg_tournaments_with_dma') }} AS stg_tournaments_with_dma
 ON stg_ifpa_tournaments.tournament_id = stg_tournaments_with_dma.tournament_id
