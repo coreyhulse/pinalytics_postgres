@@ -33,6 +33,7 @@ SELECT
 , years_active
 , error_message
 , extract_timestamp
+, line_timestamp
 FROM {{ ref('stg_ifpa_players') }}
 WHERE is_valid = 1
 

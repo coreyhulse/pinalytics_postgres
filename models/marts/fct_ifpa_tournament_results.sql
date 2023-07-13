@@ -51,6 +51,7 @@ SELECT
 , stg_ifpa_tournament_results.excluded_flag
 , stg_ifpa_tournament_results.error_message
 , stg_ifpa_tournament_results.extract_timestamp
+, stg_ifpa_tournament_results.line_timestamp
 FROM {{ ref('stg_ifpa_tournament_results') }} stg_ifpa_tournament_results
 LEFT JOIN {{ ref('fct_ifpa_tournaments') }} fct_ifpa_tournaments
 ON stg_ifpa_tournament_results.tournament_id = fct_ifpa_tournaments.tournament_id

@@ -13,6 +13,6 @@ GROUP BY 1
 {{
   config({
     "post-hook": 'ALTER TABLE {{ target.schema }}.{{ this.name }}
-                    add PRIMARY KEY(geography(255))'
+                    add PRIMARY KEY(geography)'
     })
 }}
