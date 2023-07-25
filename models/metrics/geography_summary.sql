@@ -46,11 +46,11 @@ SELECT
 , (stg_geography_stats_players.count_player_onetimer::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_onetimer
 , (stg_geography_stats_players.count_player_nonactive::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_nonactive
 
-, stg_geography_stats_players_all.all_perc_player_wpprtunist
-, stg_geography_stats_players_all.all_perc_player_traveler
-, stg_geography_stats_players_all.all_perc_player_localsupporter
-, stg_geography_stats_players_all.all_perc_player_onetimer
-, stg_geography_stats_players_all.all_perc_player_nonactive
+, stg_player_stats_all.all_perc_player_wpprtunist
+, stg_player_stats_all.all_perc_player_traveler
+, stg_player_stats_all.all_perc_player_localsupporter
+, stg_player_stats_all.all_perc_player_onetimer
+, stg_player_stats_all.all_perc_player_nonactive
 
 , stg_geography_stats_tournaments.count_tournament_wpprtunist AS count_tournament_wpprtunist
 , stg_geography_stats_tournaments.count_tournament_traveler AS count_tournament_traveler
@@ -139,7 +139,7 @@ LEFT JOIN {{ ref('geography_rank') }} geography_rank
 ON stg_geography_stats_points.geography = geography_rank.geography
 LEFT JOIN {{ ref('stg_geography_player_bins') }} stg_geography_player_bins
 ON stg_geography_stats_points.geography = stg_geography_player_bins.geography
-LEFT JOIN {{ ref('stg_geography_stats_players_all') }} stg_geography_stats_players_all
+LEFT JOIN {{ ref('stg_player_stats_all') }} stg_player_stats_all
 ON 1=1
 LEFT JOIN {{ ref('stg_geography_stats_tournaments_all') }} stg_geography_stats_tournaments_all
 ON 1=1
