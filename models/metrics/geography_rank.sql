@@ -19,6 +19,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_01_month DESC) AS points_01_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_01_month > 0
           ORDER BY points_01_month DESC
       ) AS points_01_rank
   ON points_01_rank.geography = stg_geography_stats_points.geography
@@ -28,6 +29,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_12_month DESC) AS points_12_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_12_month > 0
           ORDER BY points_12_month DESC
       ) AS points_12_rank
   ON points_12_rank.geography = stg_geography_stats_points.geography
@@ -37,6 +39,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_48_month DESC) AS points_48_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_48_month > 0
           ORDER BY points_48_month DESC
       ) AS points_48_rank
   ON points_48_rank.geography = stg_geography_stats_points.geography
@@ -46,6 +49,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_alltime DESC) AS points_alltime_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_alltime > 0
           ORDER BY points_alltime DESC
       ) AS points_alltime_rank
   ON points_alltime_rank.geography = stg_geography_stats_points.geography
@@ -55,6 +59,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_winner_01_month DESC) AS points_winner_01_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_winner_01_month > 0
           ORDER BY points_winner_01_month DESC
       ) AS points_winner_01_rank
   ON points_winner_01_rank.geography = stg_geography_stats_points.geography
@@ -64,6 +69,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_winner_12_month DESC) AS points_winner_12_month_rank 
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_winner_12_month > 0
           ORDER BY points_winner_12_month DESC
       ) AS points_winner_12_rank
   ON points_winner_12_rank.geography = stg_geography_stats_points.geography
@@ -73,6 +79,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_winner_48_month DESC) AS points_winner_48_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_winner_48_month > 0 
           ORDER BY points_winner_48_month DESC
       ) AS points_winner_48_rank
   ON points_winner_48_rank.geography = stg_geography_stats_points.geography
@@ -82,6 +89,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY points_winner_alltime DESC) AS points_winner_alltime_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE points_winner_alltime > 0
           ORDER BY points_winner_alltime DESC
       ) AS points_winner_alltime_rank
   ON points_winner_alltime_rank.geography = stg_geography_stats_points.geography
@@ -91,6 +99,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY tournaments_01_month DESC) AS tournaments_01_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE tournaments_01_month > 0
           ORDER BY tournaments_01_month DESC
       ) AS tournaments_01_rank
   ON tournaments_01_rank.geography = stg_geography_stats_points.geography
@@ -100,6 +109,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY tournaments_12_month DESC) AS tournaments_12_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE tournaments_12_month > 0
           ORDER BY tournaments_12_month DESC
       ) AS tournaments_12_rank
   ON tournaments_12_rank.geography = stg_geography_stats_points.geography
@@ -109,6 +119,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY tournaments_48_month DESC) AS tournaments_48_month_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE tournaments_48_month > 0
           ORDER BY tournaments_48_month DESC
       ) AS tournaments_48_rank
   ON tournaments_48_rank.geography = stg_geography_stats_points.geography
@@ -118,6 +129,7 @@ SELECT
             geography
           , RANK() OVER (ORDER BY tournaments_alltime DESC) AS tournaments_alltime_rank
           FROM {{ ref('stg_geography_stats_points') }} stg_geography_stats_points
+          WHERE tournaments_alltime > 0
           ORDER BY tournaments_alltime DESC
       ) AS tournaments_alltime_rank
   ON tournaments_alltime_rank.geography = stg_geography_stats_points.geography

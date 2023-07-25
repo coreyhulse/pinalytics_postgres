@@ -59,6 +59,16 @@ SELECT
 , player_geography_highlights.rolling_all_time_geography_02
 , player_geography_highlights.rolling_all_time_geography_03
 , player_geography_highlights.rolling_all_time_geography_04
+, stg_player_recency_flag.most_recent_tournament_date
+, stg_player_recency_flag.rolling_01_month
+, stg_player_recency_flag.rolling_03_month
+, stg_player_recency_flag.rolling_12_month
+, stg_player_recency_flag.rolling_24_month
+, stg_player_recency_flag.rolling_36_month
+, stg_player_recency_flag.rolling_48_month
+, stg_player_recency_flag.rolling_60_month
+, stg_player_recency_flag.rolling_all_time
+
 , CASE
     WHEN distinct_geography_count_rolling_48 IS NULL THEN '00'
     WHEN distinct_geography_count_rolling_48 = 0 THEN '00'
@@ -90,6 +100,7 @@ SELECT
     ELSE NULL
   END AS years_active_bin
 , CASE
+    WHEN tournament_count_rolling_48 = 0 THEN NULL
     WHEN tournament_count_rolling_48_geography_01 / tournament_count_rolling_48 IS NULL THEN '000%'
     WHEN tournament_count_rolling_48_geography_01 / tournament_count_rolling_48 < 0.20 THEN '000% - 020%'
     WHEN tournament_count_rolling_48_geography_01 / tournament_count_rolling_48 < 0.40 THEN '020% - 040%'
@@ -100,6 +111,7 @@ SELECT
     ELSE '100%'
   END AS tournament_count_geo_01_perc_bin
 , CASE
+    WHEN points_rolling_48 = 0 THEN NULL
     WHEN points_rolling_48_geography_01 / points_rolling_48 IS NULL THEN '000%'
     WHEN points_rolling_48_geography_01 / points_rolling_48 < 0.20 THEN '000% - 020%'
     WHEN points_rolling_48_geography_01 / points_rolling_48 < 0.40 THEN '020% - 040%'
@@ -133,6 +145,8 @@ SELECT
 FROM {{ ref('fct_ifpa_players') }} fct_ifpa_players
 LEFT JOIN {{ ref('player_geography_highlights') }} player_geography_highlights
 ON fct_ifpa_players.player_id = player_geography_highlights.player_id
+LEFT JOIN {{ ref('stg_player_recency_flag')}} stg_player_recency_flag
+ON fct_ifpa_players.player_id = stg_player_recency_flag.player_id
 
 {{
   config({
