@@ -6,16 +6,16 @@ SELECT
 , stg_international_tournaments.all_tournament_count
 , stg_international_tournaments.all_wppr_points
 
-, stg_geography_stats_players_all.all_player_wpprtunist
-, stg_geography_stats_players_all.all_player_traveler
-, stg_geography_stats_players_all.all_player_localsupporter
-, stg_geography_stats_players_all.all_player_onetimer
-, stg_geography_stats_players_all.all_player_nonactive
-, stg_geography_stats_players_all.all_perc_player_wpprtunist
-, stg_geography_stats_players_all.all_perc_player_traveler
-, stg_geography_stats_players_all.all_perc_player_localsupporter
-, stg_geography_stats_players_all.all_perc_player_onetimer
-, stg_geography_stats_players_all.all_perc_player_nonactive
+, stg_player_stats_all.all_player_wpprtunist
+, stg_player_stats_all.all_player_traveler
+, stg_player_stats_all.all_player_localsupporter
+, stg_player_stats_all.all_player_onetimer
+, stg_player_stats_all.all_player_nonactive
+, stg_player_stats_all.all_perc_player_wpprtunist
+, stg_player_stats_all.all_perc_player_traveler
+, stg_player_stats_all.all_perc_player_localsupporter
+, stg_player_stats_all.all_perc_player_onetimer
+, stg_player_stats_all.all_perc_player_nonactive
 
 , stg_geography_stats_tournaments_all.all_tournament_wpprtunist
 , stg_geography_stats_tournaments_all.all_tournament_traveler
@@ -23,6 +23,8 @@ SELECT
 , stg_geography_stats_tournaments_all.all_tournament_onetimer
 , stg_geography_stats_tournaments_all.all_tournament_mixedpersona
 , stg_geography_stats_tournaments_all.all_tournament_nonactive
+, stg_geography_stats_tournaments_all.all_tournaments
+
 , stg_geography_stats_tournaments_all.all_perc_tournament_wpprtunist
 , stg_geography_stats_tournaments_all.all_perc_tournament_traveler
 , stg_geography_stats_tournaments_all.all_perc_tournament_localsupporter
@@ -57,7 +59,7 @@ SELECT
 FROM {{ ref('stg_international_players') }} stg_international_players
 LEFT JOIN {{ ref('stg_international_tournaments') }} stg_international_tournaments
 ON 1=1
-LEFT JOIN {{ ref('stg_geography_stats_players_all') }} stg_geography_stats_players_all
+LEFT JOIN {{ ref('stg_player_stats_all') }} stg_player_stats_all
 ON 1=1
 LEFT JOIN {{ ref('stg_geography_stats_tournaments_all') }} stg_geography_stats_tournaments_all
 ON 1=1

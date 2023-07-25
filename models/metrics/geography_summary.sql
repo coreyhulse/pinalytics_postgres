@@ -37,11 +37,14 @@ SELECT
 
 , stg_player_count_top_geography.player_count_top_geography_rolling_48
 
-, (stg_geography_stats_players.count_player_wpprtunist) / (stg_geography_stats_players.count_players) AS perc_player_wpprtunist
-, (stg_geography_stats_players.count_player_traveler) / (stg_geography_stats_players.count_players) AS perc_player_traveler
-, (stg_geography_stats_players.count_player_localsupporter) / (stg_geography_stats_players.count_players) AS perc_player_localsupporter
-, (stg_geography_stats_players.count_player_onetimer) / (stg_geography_stats_players.count_players) AS perc_player_onetimer
-, (stg_geography_stats_players.count_player_nonactive) / (stg_geography_stats_players.count_players) AS perc_player_nonactive
+, (stg_geography_stats_points.points_48_month::decimal / CASE WHEN stg_geography_stats_points.points_winner_48_month = 0 THEN NULL ELSE points_winner_48_month::decimal END) AS points_winner_ratio
+, (stg_geography_stats_players.count_players::decimal / CASE WHEN stg_player_count_top_geography.player_count_top_geography_rolling_48 = 0 THEN NULL ELSE player_count_top_geography_rolling_48::decimal END) AS traveler_home_ratio
+
+, (stg_geography_stats_players.count_player_wpprtunist::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_wpprtunist
+, (stg_geography_stats_players.count_player_traveler::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_traveler
+, (stg_geography_stats_players.count_player_localsupporter::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_localsupporter
+, (stg_geography_stats_players.count_player_onetimer::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_onetimer
+, (stg_geography_stats_players.count_player_nonactive::decimal) / (stg_geography_stats_players.count_players::decimal) AS perc_player_nonactive
 
 , stg_geography_stats_players_all.all_perc_player_wpprtunist
 , stg_geography_stats_players_all.all_perc_player_traveler
@@ -57,12 +60,12 @@ SELECT
 , stg_geography_stats_tournaments.count_tournament_mixedpersona AS count_tournament_mixedpersona
 , stg_geography_stats_tournaments.count_tournaments AS count_tournaments
 
-, (stg_geography_stats_tournaments.count_tournament_wpprtunist) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_wpprtunist
-, (stg_geography_stats_tournaments.count_tournament_traveler) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_traveler
-, (stg_geography_stats_tournaments.count_tournament_localsupporter) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_localsupporter
-, (stg_geography_stats_tournaments.count_tournament_onetimer) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_onetimer
-, (stg_geography_stats_tournaments.count_tournament_mixedpersona) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_mixedpersona
-, (stg_geography_stats_tournaments.count_tournament_nonactive) / (stg_geography_stats_tournaments.count_tournaments) AS perc_tournament_nonactive
+, (stg_geography_stats_tournaments.count_tournament_wpprtunist::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_wpprtunist
+, (stg_geography_stats_tournaments.count_tournament_traveler::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_traveler
+, (stg_geography_stats_tournaments.count_tournament_localsupporter::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_localsupporter
+, (stg_geography_stats_tournaments.count_tournament_onetimer::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_onetimer
+, (stg_geography_stats_tournaments.count_tournament_mixedpersona::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_mixedpersona
+, (stg_geography_stats_tournaments.count_tournament_nonactive::decimal) / (stg_geography_stats_tournaments.count_tournaments::decimal) AS perc_tournament_nonactive
 
 , stg_geography_stats_tournaments_all.all_perc_tournament_wpprtunist
 , stg_geography_stats_tournaments_all.all_perc_tournament_traveler

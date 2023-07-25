@@ -50,11 +50,12 @@ SELECT
 , stg_tournament_persona_summary.count_onetimer
 , stg_tournament_persona_summary.count_nonactive
 , CASE
-    WHEN stg_tournament_persona_summary.count_wpprtunist / fct_ifpa_tournaments.player_count > .6 THEN 'WPPRtunist Event'
-    WHEN stg_tournament_persona_summary.count_traveler / fct_ifpa_tournaments.player_count > .3 THEN 'Traveler Event'
-    WHEN stg_tournament_persona_summary.count_localsupporter / fct_ifpa_tournaments.player_count > .5 THEN 'Local Supporter Event'
-    WHEN stg_tournament_persona_summary.count_onetimer / fct_ifpa_tournaments.player_count > .2 THEN 'One-Timer Event'
-    WHEN stg_tournament_persona_summary.count_nonactive / fct_ifpa_tournaments.player_count > .5 THEN 'Non-Active Player Event'
+    WHEN fct_ifpa_tournaments.player_count = 0 THEN 'Unknown Event'
+    WHEN stg_tournament_persona_summary.count_wpprtunist::decimal / fct_ifpa_tournaments.player_count::decimal > .6 THEN 'WPPRtunist Event'
+    WHEN stg_tournament_persona_summary.count_traveler::decimal / fct_ifpa_tournaments.player_count::decimal > .3 THEN 'Traveler Event'
+    WHEN stg_tournament_persona_summary.count_localsupporter::decimal / fct_ifpa_tournaments.player_count::decimal > .5 THEN 'Local Supporter Event'
+    WHEN stg_tournament_persona_summary.count_onetimer::decimal / fct_ifpa_tournaments.player_count::decimal > .2 THEN 'One-Timer Event'
+    WHEN stg_tournament_persona_summary.count_nonactive::decimal / fct_ifpa_tournaments.player_count::decimal > .5 THEN 'Non-Active Player Event'
     ELSE 'Mixed Persona Event'
   END AS event_persona
 
