@@ -1,0 +1,1 @@
+{% macro zero_if_null_no_rename(table_name, column_name) %}COALESCE({{ table_name }}.{{ column_name }}, 0) AS {{ column_name }}{% endmacro %}

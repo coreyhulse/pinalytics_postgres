@@ -6,6 +6,9 @@ name: 'pinalytics'
 version: '2.0.0'
 config-version: 2
 
+vars:
+  version_number: '2.0.0' #should match version variable up above
+
 # This setting configures which "profile" dbt uses for this project.
 profile: 'pinalytics'
 
