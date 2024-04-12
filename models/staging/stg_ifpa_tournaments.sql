@@ -20,7 +20,7 @@ SELECT
 , CASE WHEN country_code = 'US' THEN 1 ELSE 0 END AS country_us
 , CASE WHEN country_code IS NOT NULL THEN 1 ELSE 0 END AS country_known
 , director_name
-, CAST(CASE WHEN director_id = '' THEN NULL ELSE director_id END AS int) AS director_id
+, director_id AS director_id
 , website
 , event_name
 , CAST(CASE WHEN event_start_date = '' OR event_start_date = '0000-00-00' THEN NULL ELSE event_start_date END AS date) AS event_start_date
